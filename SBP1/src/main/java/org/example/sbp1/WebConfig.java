@@ -10,6 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
                 .allowedOrigins(
+                    "https://library-frontend-production-4e1a.up.railway.app/",
                     "http://localhost:3000",  // React dev server
                     "http://localhost",        // Docker frontend
                     "http://localhost:80"      // Docker frontend explicit port
