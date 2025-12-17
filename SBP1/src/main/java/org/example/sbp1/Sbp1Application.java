@@ -2,10 +2,8 @@ package org.example.sbp1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
-@ComponentScan(basePackages = "org.example.sbp1")
+@SpringBootApplication(scanBasePackages = "org.example.sbp1")
 public class Sbp1Application {
 
     public static void main(String[] args) {
