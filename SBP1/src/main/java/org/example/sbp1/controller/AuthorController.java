@@ -5,6 +5,7 @@ import org.example.sbp1.dto.CreateAuthorRequest;
 import org.example.sbp1.model.Author;
 import org.example.sbp1.repository.AuthorRepository;
 import org.example.sbp1.service.AuthorService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Author createAuthor(@RequestBody CreateAuthorRequest request) {
         return authorService.createAuthor(request);
     }

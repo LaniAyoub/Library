@@ -1,0 +1,28 @@
+# Operating System
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+target/
+dist/
+build/
+
+# Logs
+*.log
+hs_err_*.log
+
+# Environment variables
+.env.local
+
+# Node modules
+node_modules/
+
+# Docker volumes
+mysql_data/

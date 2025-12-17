@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.sbp1.dto.CreatePublisherRequest;
 import org.example.sbp1.model.Publisher;
 import org.example.sbp1.service.PublisherService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class PublisherController {
 
     private final PublisherService publisherService;
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Publisher createPublisher(@RequestBody CreatePublisherRequest request) {
         return publisherService.createPublisher(request);
     }

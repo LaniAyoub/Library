@@ -9,8 +9,13 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:3000") // React dev server
+                .allowedOrigins(
+                    "http://localhost:3000",  // React dev server
+                    "http://localhost",        // Docker frontend
+                    "http://localhost:80"      // Docker frontend explicit port
+                )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*");
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }

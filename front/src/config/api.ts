@@ -1,14 +1,29 @@
 // API Configuration
-// In Docker, Nginx proxies /api to backend
-// In local dev, Vite proxy forwards to localhost:8080
-const API_BASE_URL = import.meta.env.PROD 
-  ? ''  // Production: use relative URLs (Nginx handles proxying)
-  : 'http://localhost:8080';  // Development: direct to backend
+// Supports multiple deployment scenarios:
+// 1. Cloud deployment (Railway, Render, etc.) - uses VITE_API_URL env variable
+// 2. Docker local - uses relative URLs with Nginx proxy
+// 3. Local development - uses localhost:8080
 
-// You can easily change this for different environments
-export const getApiBaseUrl = (): string => {
-  return import.meta.env.VITE_API_BASE_URL || API_BASE_URL;
+const getApiBaseUrl = (): string => {
+  // Priority 1: Explicit API URL from environment (for cloud deployments)
+  if (import.meta.env.VITE_API_URL) {
+    console.log('Using API URL from environment:', import.meta.env.VITE_API_URL);
+    return import.meta.env.VITE_API_URL;
+  }
+  
+  // Priority 2: Production mode (Docker with Nginx proxy)
+  if (import.meta.env.PROD) {
+    console.log('Production mode: using relative URLs (Nginx proxy)');
+    return '';  // Nginx handles proxying
+  }
+  
+  // Priority 3: Development mode
+  console.log('Development mode: using localhost:8080');
+  return 'http://localhost:8080';
 };
+
+// Export the function for dynamic API URL
+export { getApiBaseUrl };
 
 export const API_ENDPOINTS = {
   BOOKS: {

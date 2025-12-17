@@ -2,7 +2,6 @@ package org.example.sbp1.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
@@ -36,7 +35,6 @@ public class Book {
     // ------------------------
 
     @ManyToOne
-    @JsonManagedReference
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
 

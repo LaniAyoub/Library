@@ -96,7 +96,12 @@ public class BookService {
         if (dto.getTagNames() != null) {
             tags.addAll(dto.getTagNames().stream()
                     .map(name -> tagRepository.findByName(name)
-                            .orElseThrow(() -> new RuntimeException("Tag not found with name: " + name)))
+                            .orElseGet(() -> {
+                                // Create new tag if it doesn't exist
+                                Tag newTag = new Tag();
+                                newTag.setName(name);
+                                return tagRepository.save(newTag);
+                            }))
                     .collect(Collectors.toSet()));
         }
 

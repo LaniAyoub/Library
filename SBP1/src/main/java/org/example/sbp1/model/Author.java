@@ -1,6 +1,5 @@
 package org.example.sbp1.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -18,8 +17,8 @@ public class Author {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)private int id;
     @Column(nullable = false)@NotBlank(message = "Name cannot be blank")private String name;
     @Column(nullable = false)@NotBlank(message = "Email cannot be blank")private String email;
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)@JsonIgnore@JsonBackReference
-
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Book> books = new ArrayList<>();
 
 
