@@ -20,6 +20,13 @@ BookController {
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
+    
+    // --- Get all books (REST standard endpoint) ---
+    @GetMapping
+    public List<Book> getAllBooks() {
+        return bookService.displayAllBooks();
+    }
+    
     /*
     // --- Create a book ---
     @PostMapping("/saveBook")
