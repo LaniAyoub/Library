@@ -1,0 +1,9 @@
+# Nixpacks configuration for Railway
+[phases.build]
+cmds = ["docker build -t backend ."]
+
+[phases.setup]
+nixPkgs = ["docker"]
+
+[start]
+cmd = "echo 'Use Dockerfile instead'"
